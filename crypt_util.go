@@ -4,7 +4,7 @@
 // Created with GoLand 2022.2
 // Description: aes 加密解密
 
-package common
+package main
 
 import (
 	"bytes"
@@ -30,8 +30,8 @@ func unpad(src []byte) []byte {
 	return src[:(length - unpadding)]
 }
 
-// encrypt encrypts plaintext using the given key and returns the ciphertext in base64 encoding
-func encrypt(key, plaintext string) (string, error) {
+// Encrypt encrypts plaintext using the given key and returns the ciphertext in base64 encoding
+func Encrypt(key, plaintext string) (string, error) {
 	block, err := aes.NewCipher([]byte(key))
 	if err != nil {
 		return "", err
@@ -51,8 +51,8 @@ func encrypt(key, plaintext string) (string, error) {
 	return base64.StdEncoding.EncodeToString(ciphertext), nil
 }
 
-// decrypt decrypts base64 encoded ciphertext using the given key and returns the plaintext
-func decrypt(key, cryptoText string) (string, error) {
+// Decrypt decrypts base64 encoded ciphertext using the given key and returns the plaintext
+func Decrypt(key, cryptoText string) (string, error) {
 	ciphertext, _ := base64.StdEncoding.DecodeString(cryptoText)
 	block, err := aes.NewCipher([]byte(key))
 	if err != nil {
